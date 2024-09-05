@@ -1,38 +1,18 @@
 import React, { useState } from 'react';
-
+import {useForm} from 'react-hook-form'
+import {Button1} from '../../Components/Button/Button.js'
+import {InputBox} from '../../Components/Component.js'
 const Login = () => {
-  
-
-  const handleSubmit = (event) => {
-    event.preventDefault();
-    // Implement login logic here (mock or API integration)
-    console.log('Contractor Login:', { email, password });
-  };
+  const {register, handleSubmit} = useForm();
 
   return (
-    <div className="form-container">
-      <h2>Contractor Login</h2>
-      <form onSubmit={handleSubmit}>
-        <div className="form-group">
-          <label>Email:</label>
-          <input
-            type="email"
-            value={email}
-            onChange={(e) => setEmail(e.target.value)}
-            required
-          />
-        </div>
-        <div className="form-group">
-          <label>Password:</label>
-          <input
-            type="password"
-            value={password}
-            onChange={(e) => setPassword(e.target.value)}
-            required
-          />
-        </div>
-        <button type="submit">Login</button>
-      </form>
+    <div className='w-full h-full flex items-center justify-center '>
+      <div className='border h-1/2 w-1/3 bg-customLightgreen flex flex-col justify-evenly items-center rounded-lg'>
+        <h1 className='text-4xl text-center text-customDarkgreen font-semibold'>Login</h1>
+        <InputBox label='User Name'/>
+        <InputBox label='Password' type='password'/>
+        <Button1 label='Login'/>
+      </div>
     </div>
   );
 };

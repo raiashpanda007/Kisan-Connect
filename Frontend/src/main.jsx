@@ -9,12 +9,14 @@ import {
   createBrowserRouter,
   createRoutesFromElements,
 } from "react-router-dom";
+import {Login} from'./Screen/Contractor/Contractor.js';
 import { Provider } from "react-redux";
 import store from "./Store/Store.js";
 const router = createBrowserRouter(
   createRoutesFromElements(
     <Route path="/" element={<App />} >
       <Route path="" element={<Landing_Screen/>} />
+      <Route path="contractor/login" element={<Login />} />
     </Route>
   )
 )
