@@ -9,7 +9,7 @@ import {
   createBrowserRouter,
   createRoutesFromElements,
 } from "react-router-dom";
-import {Login} from'./Screen/Contractor/Contractor.js';
+import {Login , SignUp} from'./Screen/Contractor/Contractor.js';
 import { Provider } from "react-redux";
 import store from "./Store/Store.js";
 const router = createBrowserRouter(
@@ -17,6 +17,7 @@ const router = createBrowserRouter(
     <Route path="/" element={<App />} >
       <Route path="" element={<Landing_Screen/>} />
       <Route path="contractor/login" element={<Login />} />
+      <Route path="contractor/signup" element={<SignUp />} />
     </Route>
   )
 )
