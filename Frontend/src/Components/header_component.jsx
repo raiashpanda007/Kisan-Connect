@@ -23,15 +23,15 @@ function header_component() {
     }
   ]
   return (
-    <div className=' absolute w-full bg-customLightgreen h-24 rounded-lg flex items-center'>
+    <div className=' absolute w-full bg-customLightgreen h-24 rounded-lg flex items-center justify-center'>
       <div className='h-12 w-12 rounded-full border border-black flex justify-center items-center'> 
         logo
       </div>
-      {!user.userStatus&&<div className='w-5/6 border text-5xl  text-customDarkgreen  font-bold text-center'>
+      <div className='w-5/6 border text-5xl  text-customDarkgreen  font-bold text-center '>
         KRISHI CONNECT
       </div>}
       <div className='w-1/6 border flex justify-center items-center'>
-         <div className= 'w-30 p-4 rounded-r-full rounded-l-full text-white font-semibold font-outfit bg-customDarkgreen '>
+         <div className= 'w-30 p-4 rounded-r-full rounded-l-full text-white font-semibold font-outfit bg-customDarkgreen cursor-pointer '>
          <LanguageIcon/> Select Language
          </div>
       </div>      
