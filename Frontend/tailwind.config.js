@@ -5,7 +5,15 @@ export default {
     "./src/**/*.{js,ts,jsx,tsx}",
   ],
   theme: {
-    extend: {},
+    extend: {
+      fontFamily: {
+        outfit: ["Outfit", "sans-serif"],
+        roboto: ["Roboto", "sans-serif"],
+      },colors:{
+        customLightgreen: "#DFF1E6",
+        customDarkgreen: "#007E2F",
+      }
+    },
   },
   plugins: [],
 }
