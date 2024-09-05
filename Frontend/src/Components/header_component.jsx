@@ -29,7 +29,7 @@ function header_component() {
       </div>
       <div className='w-5/6 border text-5xl  text-customDarkgreen  font-bold text-center '>
         KRISHI CONNECT
-      </div>}
+      </div>
       <div className='w-1/6 border flex justify-center items-center'>
          <div className= 'w-30 p-4 rounded-r-full rounded-l-full text-white font-semibold font-outfit bg-customDarkgreen cursor-pointer '>
          <LanguageIcon/> Select Language
