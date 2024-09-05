@@ -27,9 +27,9 @@ function header_component() {
       <div className='h-12 w-12 rounded-full border border-black flex justify-center items-center'> 
         logo
       </div>
-      <div className='w-5/6 border text-5xl  text-customDarkgreen  font-bold text-center'>
+      {!user.userStatus&&<div className='w-5/6 border text-5xl  text-customDarkgreen  font-bold text-center'>
         KRISHI CONNECT
-      </div>
+      </div>}
       <div className='w-1/6 border flex justify-center items-center'>
          <div className= 'w-30 p-4 rounded-r-full rounded-l-full text-white font-semibold font-outfit bg-customDarkgreen '>
          <LanguageIcon/> Select Language
