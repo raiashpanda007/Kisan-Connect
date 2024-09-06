@@ -7,8 +7,8 @@ const SignUp = () => {
 
   return (
     <div className='w-full h-full flex items-center justify-center '>
-      <div className='border h-3/4 w-1/3 bg-customLightgreen flex flex-col justify-evenly items-center rounded-lg'>
-        <h1 className='text-4xl text-center text-customDarkgreen font-semibold'>Sign Up</h1>
+      <div className='border h-3/4 w-1/3  flex flex-col justify-evenly items-center rounded-3xl bg-gradient-to-r from-green-100 via-blue-200 to-purple-300 '>
+        <h1 className='text-4xl text-center text-customDarkgreen font-bold'>Sign Up</h1>
         <InputBox label='Name'/>
         <InputBox label='Phone Number'/>
         <InputBox label='Addhaar No.'/>

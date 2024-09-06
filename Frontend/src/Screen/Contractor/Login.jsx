@@ -7,8 +7,8 @@ const Login = () => {
 
   return (
     <div className='w-full h-full flex items-center justify-center '>
-      <div className='border h-1/2 w-1/3 bg-customLightgreen flex flex-col justify-evenly items-center rounded-lg'>
-        <h1 className='text-4xl text-center text-customDarkgreen font-semibold'>Login</h1>
+      <div className='border h-1/2 w-1/3 bg-gradient-to-r from-green-100 via-blue-200 to-purple-300  flex flex-col justify-evenly items-center rounded-3xl'>
+        <h1 className='text-4xl text-center text-customDarkgreen font-bold'>Login</h1>
         <InputBox label='User Name'/>
         <InputBox label='Password' type='password'/>
         <Button1 label='Login'/>
