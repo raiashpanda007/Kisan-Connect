@@ -3,7 +3,7 @@ import  {header as Header}  from "./Components/Component.js";
 
 function App() {
   return (
-    <div className="h-screen w-screen overflow-none relative">
+    <div className="h-screen w-screen overflow-none relative bg-gray-200">
       <Header />
       <Outlet />
     </div>
