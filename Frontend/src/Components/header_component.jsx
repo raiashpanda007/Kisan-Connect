@@ -21,7 +21,7 @@ function header_component() {
     },
   ];
   return (
-    <div className="h-24 w-full bg-gradient-to-r from-green-300 to-green-500 shadow-lg p-4 absolute">
+    <div className="h-24 w-full bg-gradient-to-r from-green-300 to-green-500 shadow-lg p-4 absolute z-10 ">
       {!user.userStatus?<div className="container mx-auto flex justify-center items-center">
         {/* Enhanced Predictions Button */}
         
