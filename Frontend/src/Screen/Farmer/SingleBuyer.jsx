@@ -1,7 +1,8 @@
-import React from "react";
+import React,{useState} from "react";
 import { Transition } from '@headlessui/react';
 
 function SingleBuyer({ CropType, PriceRange, Quantityrequired, ContactNo, Duration }) {
+  const [ApplyNow, setApplyNow] = useState(false);
   return (
     <div className="relative z-20 w-full cursor-pointer mt-6"> {/* Added margin-top */}
       <Transition
@@ -26,8 +27,8 @@ function SingleBuyer({ CropType, PriceRange, Quantityrequired, ContactNo, Durati
           <div className="mt-2 text-gray-700">Duration:</div>
           
           {/* Apply Now Button */}
-          <button className="absolute right-4 top-1/2 transform -translate-y-1/2 bg-green-500 text-white py-2 px-6 rounded-full hover:bg-green-600 transition-all duration-300 shadow-lg">
-            Apply Now
+          <button className={ApplyNow?"absolute right-4 top-1/2 transform -translate-y-1/2 bg-white text-green-500 py-2 px-6 rounded-full hover:bg-green-600 transition-all duration-300 shadow-lg":"absolute right-4 top-1/2 transform -translate-y-1/2 bg-green-500 text-white py-2 px-6 rounded-full hover:bg-green-600 transition-all duration-300 shadow-lg"} onClick={()=>setApplyNow((prev)=>!prev)}>
+            {ApplyNow ? 'Applied' : 'Apply Now'}
           </button>
         </div>
       </Transition>

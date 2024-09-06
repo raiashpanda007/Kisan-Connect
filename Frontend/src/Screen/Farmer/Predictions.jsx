@@ -14,28 +14,41 @@ const Predictions = () => {
     const [result, setResult] = useState(null);
 
     const handleChange = (e) => {
+        const { name, value } = e.target;
         setFormData({
             ...formData,
-            [e.target.name]: e.target.value,
+            [name]: value,
         });
     };
 
     const handleSubmit = (e) => {
         e.preventDefault();
-        // Perform API call or crop recommendation logic
+        
+        // Convert strings to numbers for processing
+        const processedData = {
+            nitrogen: parseFloat(formData.nitrogen),
+            phosphorus: parseFloat(formData.phosphorus),
+            potassium: parseFloat(formData.potassium),
+            temperature: parseFloat(formData.temperature),
+            humidity: parseFloat(formData.humidity),
+            pH: parseFloat(formData.pH),
+            rainfall: parseFloat(formData.rainfall),
+        };
+
+        // Perform your API call or crop recommendation logic here
         const recommendedCrop = 'Rice'; // Replace with your recommendation logic
         setResult(recommendedCrop);
     };
 
     return (
-        <div className="overflow-auto flex justify-center items-center h-screen bg-gradient-to-r from-green-100 z-[-10] via-blue-200 to-purple-300 first-letter:">
-            <div className="bg-white shadow-lg rounded-lg p-8 w-full max-w-md relative top-32 overflow-auto">
+        <div className="overflow-auto flex justify-center items-center h-screen  first-letter:">
+            <div className="bg-gradient-to-r from-green-100 via-blue-200 to-purple-300 shadow-lg rounded-lg p-8 w-full max-w-md relative top-32 overflow-auto">
                 <h1 className="text-2xl font-semibold mb-6 text-green-700">Crop Recommendation System 🌱</h1>
                 <form onSubmit={handleSubmit} className="space-y-4">
                     <div>
                         <label className="block text-left text-gray-700">Nitrogen:</label>
                         <input
-                            type="number"
+                            type="text"
                             name="nitrogen"
                             value={formData.nitrogen}
                             onChange={handleChange}
@@ -45,7 +58,7 @@ const Predictions = () => {
                     <div>
                         <label className="block text-left text-gray-700">Phosphorus:</label>
                         <input
-                            type="number"
+                            type="text"
                             name="phosphorus"
                             value={formData.phosphorus}
                             onChange={handleChange}
@@ -55,7 +68,7 @@ const Predictions = () => {
                     <div>
                         <label className="block text-left text-gray-700">Potassium:</label>
                         <input
-                            type="number"
+                            type="text"
                             name="potassium"
                             value={formData.potassium}
                             onChange={handleChange}
@@ -65,7 +78,7 @@ const Predictions = () => {
                     <div>
                         <label className="block text-left text-gray-700">Temperature:</label>
                         <input
-                            type="number"
+                            type="text"
                             name="temperature"
                             value={formData.temperature}
                             onChange={handleChange}
@@ -75,7 +88,7 @@ const Predictions = () => {
                     <div>
                         <label className="block text-left text-gray-700">Humidity:</label>
                         <input
-                            type="number"
+                            type="text"
                             name="humidity"
                             value={formData.humidity}
                             onChange={handleChange}
@@ -85,7 +98,7 @@ const Predictions = () => {
                     <div>
                         <label className="block text-left text-gray-700">pH:</label>
                         <input
-                            type="number"
+                            type="text"
                             name="pH"
                             value={formData.pH}
                             onChange={handleChange}
@@ -95,7 +108,7 @@ const Predictions = () => {
                     <div>
                         <label className="block text-left text-gray-700">Rainfall:</label>
                         <input
-                            type="number"
+                            type="text"
                             name="rainfall"
                             value={formData.rainfall}
                             onChange={handleChange}

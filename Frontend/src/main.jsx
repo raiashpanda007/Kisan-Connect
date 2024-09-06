@@ -10,7 +10,7 @@ import {
   createRoutesFromElements,
 } from "react-router-dom";
 import {Login , SignUp, Home, BidForm,CurrentContracts} from'./Screen/Contractor/Contractor.js';
-import {Login as FarmerLogin, SignUp as FarmerSignUp,FarmersFeed,Predictions} from'./Screen/Farmer/Farmer.js';
+import {Login as FarmerLogin, SignUp as FarmerSignUp,FarmersFeed,Predictions,FarmerHome} from'./Screen/Farmer/Farmer.js';
 import { Provider } from "react-redux";
 import store from "./Store/Store.js";
 const router = createBrowserRouter(
@@ -25,7 +25,10 @@ const router = createBrowserRouter(
       <Route  path='contractor/create-new-bid' element={<BidForm />} />
       <Route  path='contractor/current-contracts' element={<CurrentContracts />} />
       <Route path='farmer/all-contracts' element={<FarmersFeed/>}/>
-      <Route path="farmer/predictions" element={<Predictions />} />    </Route>
+      <Route path="farmer/predictions" element={<Predictions />} />  
+      <Route path="farmer/home" element={<FarmerHome />} />
+      
+      </Route>
   )
 )
 createRoot(document.getElementById('root')).render(

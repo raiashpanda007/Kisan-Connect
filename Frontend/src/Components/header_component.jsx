@@ -1,10 +1,11 @@
 import React from "react";
 import { useSelector } from "react-redux";
-
+import { useNavigate } from "react-router-dom";
 import { LanguageIcon } from "../assets/Icons";
 
 function header_component() {
   const user = useSelector((state) => state.user);
+  const navigate = useNavigate();
 
   const navBar = [
     {
@@ -29,7 +30,7 @@ function header_component() {
         
       </div>: <div className="container mx-auto flex justify-between items-center">
         {/* Enhanced Predictions Button */}
-        <button className="bg-gradient-to-r from-green-600 to-green-700 text-white py-3 px-8 text-lg font-semibold rounded-full hover:from-green-700 hover:to-green-800 transition-all duration-300 ease-in-out shadow-xl">
+        <button className="bg-gradient-to-r from-green-600 to-green-700 text-white py-3 px-8 text-lg font-semibold rounded-full hover:from-green-700 hover:to-green-800 transition-all duration-300 ease-in-out shadow-xl" onClick={()=>navigate('/farmer/predictions')}>
           Predictions
         </button>
         
@@ -52,7 +53,7 @@ function header_component() {
         <div className="flex space-x-4">
           {/* Enhanced Ratings Button */}
           <button className="bg-gradient-to-r from-green-600 to-green-700 text-white py-2 px-6 rounded-full hover:from-green-700 hover:to-green-800 transition-all duration-300 ease-in-out shadow-lg">
-            Ratings
+            Select Language
           </button>
           {/* Profile Button */}
           <button className="bg-gradient-to-r from-green-600 to-green-700 text-white py-2 px-6 rounded-full hover:from-green-700 hover:to-green-800 transition-all duration-300 ease-in-out shadow-lg">
