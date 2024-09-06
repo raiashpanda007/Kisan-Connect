@@ -14,7 +14,7 @@ function SingleContractList({contractId,Crop,quantity,Price,TotalBidsApplied}) {
         leaveFrom="opacity-100"
         leaveTo="opacity-0"
       >
-        <div className="p-4 bg-white rounded-lg shadow-md hover:shadow-lg transition-all transform hover:scale-105">
+        <div className="p-4 bg-white rounded-2xl shadow-md hover:shadow-lg transition-all transform hover:scale-105">
           <div className="flex justify-between items-center">
             <span className="font-semibold text-lg text-[#2D3748]">
               Contract Id:{" "}
