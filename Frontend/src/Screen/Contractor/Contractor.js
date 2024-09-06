@@ -1,4 +1,6 @@
 import Login from './Login';
 import SignUp from './SignUp';
 import Home from './Home';
-export {Login,SignUp,Home};
+import BidForm from './BidForm';
+import CurrentContracts from './CurrentContracts';
+export {Login,SignUp,Home,BidForm,CurrentContracts};
