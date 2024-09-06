@@ -9,6 +9,8 @@ import {
   createBrowserRouter,
   createRoutesFromElements,
 } from "react-router-dom";
+import {Login , SignUp, Home, BidForm,CurrentContracts,AppliedBids} from'./Screen/Contractor/Contractor.js';
+import {Login as FarmerLogin, SignUp as FarmerSignUp} from'./Screen/Farmer/Farmer.js';
 import {Login , SignUp, Home, BidForm,CurrentContracts} from'./Screen/Contractor/Contractor.js';
 import {Login as FarmerLogin, SignUp as FarmerSignUp,FarmersFeed,Predictions,FarmerHome} from'./Screen/Farmer/Farmer.js';
 import { Provider } from "react-redux";
@@ -24,6 +26,7 @@ const router = createBrowserRouter(
       <Route path="farmer/signup" element={<FarmerSignUp />} />
       <Route  path='contractor/create-new-bid' element={<BidForm />} />
       <Route  path='contractor/current-contracts' element={<CurrentContracts />} />
+      <Route path='contractor/contract-details/:contractId' element={<AppliedBids  />} />
       <Route path='farmer/all-contracts' element={<FarmersFeed/>}/>
       <Route path="farmer/predictions" element={<Predictions />} />  
       <Route path="farmer/home" element={<FarmerHome />} />
