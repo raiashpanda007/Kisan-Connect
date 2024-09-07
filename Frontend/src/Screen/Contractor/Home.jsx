@@ -1,10 +1,11 @@
 import React, { useState } from "react";
 import { Button1, Button2 } from "../../Components/Button/Button.js";
 import { useNavigate } from "react-router-dom";
+import { useSelector } from "react-redux";
 
 function Home() {
   const [searchTerm, setSearchTerm] = useState("");
-  const [sortBy, setSortBy] = useState("date");
+  const [sortBy, setSortBy] = useState("ContractID");
   const [sortOrder, setSortOrder] = useState("asc");
   const navigate = useNavigate();
 
@@ -20,23 +21,17 @@ function Home() {
     setSortOrder(sortOrder === "asc" ? "desc" : "asc");
   };
 
-  // Mock data with additional fields
-  const contracts = [
-    { id: 1, name: "Contract 1", crop: "Potato", appliedBids: 10, date: "2024-09-15", deadline: "2024-10-15" },
-    { id: 2, name: "Contract 2", crop: "Tomato", appliedBids: 8, date: "2024-09-10", deadline: "2024-10-10" },
-    { id: 3, name: "Contract 3", crop: "Wheat", appliedBids: 15, date: "2024-09-20", deadline: "2024-10-20" },
-    { id: 4, name: "Contract 4", crop: "Rice", appliedBids: 12, date: "2024-09-05", deadline: "2024-10-05" },
-  ];
+  const contracts = useSelector((state) => state.TotalBids.allBids);
 
   const filteredAndSortedContracts = contracts
     .filter((contract) =>
-      contract.name.toLowerCase().includes(searchTerm.toLowerCase())
+      contract.CropName.toLowerCase().includes(searchTerm.toLowerCase())
     )
     .sort((a, b) => {
       let compareA = a[sortBy];
       let compareB = b[sortBy];
 
-      if (sortBy === "appliedBids") {
+      if (sortBy === "Quantity" || sortBy === "Price") {
         compareA = Number(compareA);
         compareB = Number(compareB);
       }
@@ -47,7 +42,7 @@ function Home() {
     });
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-green-50 to-blue-50">
+    <div className="min-h-screen bg-gradient-to-br from-green-50 to-blue-50 overflow-x-hidden">
       <header className="bg-gradient-to-r from-green-600 to-green-700 p-6 shadow-lg">
         <h1 className="text-white text-3xl font-bold text-center">Krishi Connect</h1>
       </header>
@@ -66,7 +61,7 @@ function Home() {
               <div className="flex justify-center">
                 <Button1
                   label="Create Bid"
-                  onclick={() => navigate("/contractor/create-new-bid")}
+                  onClick={() => navigate("/contractor/create-new-bid")}
                   className="px-6 py-3 bg-gradient-to-r from-green-500 to-green-600 text-white rounded-full hover:from-green-600 hover:to-green-700 transition duration-300 transform hover:scale-105 focus:outline-none focus:ring-2 focus:ring-green-500 focus:ring-opacity-50 shadow-md"
                 />
               </div>
@@ -83,7 +78,7 @@ function Home() {
               <div className="flex justify-center">
                 <Button2
                   label="Contracts"
-                  onclick={() => navigate("/contractor/current-bids")}
+                  onClick={() => navigate("/contractor/current-bids")}
                   className="px-6 py-3 bg-gradient-to-r from-blue-500 to-blue-600 text-white rounded-full hover:from-blue-600 hover:to-blue-700 transition duration-300 transform hover:scale-105 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-opacity-50 shadow-md"
                 />
               </div>
@@ -115,10 +110,11 @@ function Home() {
                     onChange={handleSortChange}
                     className="p-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-green-500"
                   >
-                    <option value="date">Date</option>
-                    <option value="deadline">Deadline</option>
-                    <option value="crop">Crop</option>
-                    <option value="appliedBids">Applied Bids</option>
+                    <option value="ContractID">Contract ID</option>
+                    <option value="Duration">Deadline</option>
+                    <option value="CropName">Crop</option>
+                    <option value="Quantity">Quantity</option>
+                    <option value="Price">Price</option>
                   </select>
                 </div>
                 <button
@@ -132,24 +128,26 @@ function Home() {
               {filteredAndSortedContracts.length > 0 ? (
                 <div className="space-y-4">
                   {filteredAndSortedContracts.map((contract) => (
-                    <div key={contract.id} className="bg-gradient-to-r from-gray-50 to-white p-6 rounded-lg shadow-md hover:shadow-lg transition duration-300">
+                    <div key={contract.ContractID} className="bg-gradient-to-r from-gray-50 to-white p-6 rounded-lg shadow-md hover:shadow-lg transition duration-300">
                       <div className="flex justify-between items-center">
                         <div>
-                          <h3 className="font-semibold text-xl text-gray-800">{contract.name}</h3>
-                          <p className="text-sm text-gray-600">Crop: {contract.crop}</p>
-                          <p className="text-sm text-gray-600">Date: {contract.date}</p>
-                          <p className="text-sm text-gray-600">Deadline: {contract.deadline}</p>
+                          <h3 className="font-semibold text-xl text-gray-800">Contract ID: {contract.ContractID}</h3>
+                          <p className="text-sm text-gray-600">Crop: {contract.CropName}</p>
+                          <p className="text-sm text-gray-600">Deadline: {contract.Duration}</p>
+                          <p className="text-sm text-gray-600">Price: {contract.Price}</p>
+                          <p className="text-sm text-gray-600">Quantity: {contract.Quantity}</p>
                         </div>
-                        <div className="text-right">
-                          <p className="text-sm font-medium text-gray-600">Applied Bids</p>
-                          <p className="text-2xl font-bold text-green-600">{contract.appliedBids}</p>
-                        </div>
+                        <Button1
+                          label="View Details"
+                          onclick={() => navigate(`/contractor/contract-details/${contract.ContractID}`)}
+                          className="bg-gradient-to-r from-green-500 to-green-600 text-white py-2 px-4 rounded-full shadow-md hover:from-green-600 hover:to-green-700 transition-transform transform hover:scale-105 focus:outline-none focus:ring-2 focus:ring-green-500 focus:ring-opacity-50"
+                        />
                       </div>
                     </div>
                   ))}
                 </div>
               ) : (
-                <p className="text-center text-gray-500 text-lg">No contracts found.</p>
+                <p className="text-gray-600 text-center mt-8">No contracts found.</p>
               )}
             </div>
           </main>
