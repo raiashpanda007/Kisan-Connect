@@ -1,17 +1,20 @@
 import { createSlice } from "@reduxjs/toolkit";
 
 const initialState = {
-    userStatus: true,
-    user: null,
-    userType:null
+    userStatus: false,
+    user: {
+        
+    },
+    
 }
 const  userSlice = createSlice({
     name: 'user',
     initialState,
     reducers: {
         setUserLoginDetails: (state, action) => {
+            console.log(action.payload)
             state.userStatus = true;
-            state.user = action.payload;
+            state.user = {...action.payload};
         },
         setSignOutState: (state) => {
             state.userStatus = false;
