@@ -1,5 +1,5 @@
 import React, { useState, useEffect, useRef } from 'react';
-import { ChevronDown, RefreshCw, X } from 'lucide-react';
+import { ChevronDown, RefreshCw, X, Bell } from 'lucide-react';
 
 const AppliedBids = () => {
   const [bids, setBids] = useState([]);
@@ -8,35 +8,22 @@ const AppliedBids = () => {
   const [sortType, setSortType] = useState('rating');
   const [showSortOptions, setShowSortOptions] = useState(false);
   const [searchTerm, setSearchTerm] = useState('');
+  const [newBidNotification, setNewBidNotification] = useState(false);  // State for new bid notification
   const [isFetchingMore, setIsFetchingMore] = useState(false);
-  const observer = useRef();  // Ref for the observer
+  const observer = useRef();
 
   useEffect(() => {
     fetchBids();  // Initial fetch
+
+    // Simulate new bid notification trigger every 10 seconds
+    // const interval = setInterval(() => {
+    //   triggerNotification();
+    // }, 10000);  // Trigger every 10 seconds (for demonstration)
+
+    return () => clearInterval(interval);  // Cleanup on unmount
   }, []);
 
-  // Apply IntersectionObserver to trigger infinite scroll when reaching the bottom
-  useEffect(() => {
-    if (!isLoading) {
-      const observerOptions = {
-        root: null,
-        rootMargin: '0px',
-        threshold: 0.1,  // Trigger when 10% of the last bid is visible
-      };
-
-      observer.current = new IntersectionObserver((entries) => {
-        if (entries[0].isIntersecting) {
-          loadMoreBids();  // Trigger loading more bids
-        }
-      }, observerOptions);
-
-      if (document.getElementById('lastBid')) {
-        observer.current.observe(document.getElementById('lastBid'));
-      }
-    }
-  }, [isLoading, bids]);
-
-  // Simulating initial bid fetching (only fetching once, no pagination here)
+  // Simulate initial bid fetching (static data)
   const fetchBids = () => {
     setIsLoading(true);
     setTimeout(() => {
@@ -50,15 +37,10 @@ const AppliedBids = () => {
     }, 1500);  // Simulate fetching delay
   };
 
-  // Load more bids (for infinite scroll, but no new bids to load in this case)
-  const loadMoreBids = () => {
-    if (isFetchingMore) return;
-    setIsFetchingMore(true);
-
-    setTimeout(() => {
-      // No additional bids in this case, just simulate a delay
-      setIsFetchingMore(false);
-    }, 1000);
+  // Trigger new bid notification (without adding bids)
+  const triggerNotification = () => {
+    setNewBidNotification(true);
+    setTimeout(() => setNewBidNotification(false), 3000);  // Notification disappears after 3 seconds
   };
 
   // Sorting function
@@ -200,6 +182,14 @@ const AppliedBids = () => {
           )}
         </div>
       </div>
+
+      {/* New Bid Notification */}
+      {newBidNotification && (
+        <div className="fixed bottom-4 right-4 bg-indigo-600 text-white px-6 py-3 rounded-lg shadow-lg flex items-center space-x-2 animate-bounce">
+          <Bell className="h-6 w-6" />
+          <span>New bids have arrived!</span>
+        </div>
+      )}
 
       {/* Modal for bid details */}
       {selectedBid && (
